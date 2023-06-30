@@ -42,7 +42,8 @@ if st.button("Run Experiment"):
                      y_test=y,
                      target=target_name,
                      title=title).dashboard_save()
-    
+
+# Set up for Linux
 if "dashboard.yaml" in listdir(getcwd()+"\\xdashboard\\"):
     if st.button("Show Dashboard"):
         time.sleep(5)
