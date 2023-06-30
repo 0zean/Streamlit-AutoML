@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 
 
 def create_connection(username, password, host, port, 
-                      db_name, db_type, driver='pymsql'):
+                      db_name, db_type, driver='pymysql'):
     """Connects to a database using the given credentials for
     authentication and returns the session object
 
@@ -21,7 +21,7 @@ def create_connection(username, password, host, port,
     db_type : _str_
         Type of database, (PostgreSQL or MySQL)
     driver : _str, optional_
-        Driver to use with MySQL, by default 'pymsql'
+        Driver to use with MySQL, by default 'pymysql'
 
     Returns
     -------
