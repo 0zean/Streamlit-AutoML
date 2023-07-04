@@ -136,19 +136,6 @@ class AutoML:
         
         progress_bar.update(total_steps - progress_bar.n)
         progress_bar.close()
-
-    def retrieve_test_data(self):
-        # get mlruns path
-        ml_path = os.getcwd()+"/mlruns/1/"
-        
-        # walk through directory to find Test.csv
-        for root, dirs, files in os.walk(ml_path):
-            if os.path.basename(root)=="artifacts":
-                test_path = os.path.join(root, "Test.csv")
-                if os.path.isfile(test_path):
-                    self.test_data = test_path
-                    break
         
     def automate(self):
         self.run_experiment()
-        self.retrieve_test_data()
