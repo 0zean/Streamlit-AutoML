@@ -1,6 +1,0 @@
-# Credentials for Authenticating into Postgres
-username = postgres
-password = pathrise2023!
-host = 104.225.217.176
-port = 8208
-db_name = feature_engineering
