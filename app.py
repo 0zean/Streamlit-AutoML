@@ -31,7 +31,7 @@ if st.button("Run Experiment"):
     
     automl.automate()
 
-    model_path = f"{getcwd()}\\pycaret_assets\\models\\{automl.model_name}"
+    model_path = f"{getcwd()}/pycaret_assets/models/{automl.model_name}"
     test_path = automl.test_data
     x = automl.xdata
     y = automl.ydata
@@ -47,7 +47,7 @@ if st.button("Run Experiment"):
 if "dashboard.yaml" in listdir(getcwd()+"\\xdashboard\\"):
     if st.button("Show Dashboard"):
         time.sleep(5)
-        db_proc = subprocess.Popen(["waitress-serve", "--port=8050", "dashboard:app"],
+        db_proc = subprocess.Popen(["gunicorn", "-w", "3", "-b", "localhost:8050", "dashboard:app"],
                                 stdout=subprocess.PIPE, cwd=getcwd())
         time.sleep(7)
         
