@@ -58,6 +58,6 @@ class ExplainerBuilder:
         
     def dashboard_save(self):
         from os import getcwd
-        self.build_explainer().to_yaml(getcwd()+"\\xdashboard\\dashboard.yaml",
-                                       explainerfile=getcwd()+"\\xdashboard\\explainer.joblib",
+        self.build_explainer().to_yaml(getcwd()+"/xdashboard/dashboard.yaml",
+                                       explainerfile=getcwd()+"/xdashboard/explainer.joblib",
                                        dump_explainer=True)
