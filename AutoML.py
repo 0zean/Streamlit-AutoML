@@ -69,7 +69,7 @@ class AutoML:
         self.experiment_name = experiment_name
 
     def run_experiment(self):
-        asset_path = os.getcwd() + "\\pycaret_assets"
+        asset_path = os.getcwd() + "/pycaret_assets"
         
         #Initialize progress bar
         total_steps = 4
@@ -112,7 +112,7 @@ class AutoML:
         progress_bar.update(1)
 
         # Save Experiment
-        save_experiment(f'{asset_path}\\experiments\\{self.experiment_name}.pkl')
+        save_experiment(f'{asset_path}/experiments/{self.experiment_name}.pkl')
 
         ## Append the tuned models into a list.
         ## Rank them and choose the one that has the highest metric of choice
@@ -127,11 +127,11 @@ class AutoML:
         self.model_name = type(self.tuned_model).__name__
 
         save_model(model=self.tuned_model, 
-                   model_name=f"{asset_path}\\models\\{self.model_name}",
+                   model_name=f"{asset_path}/models/{self.model_name}",
                    model_only=True
                    )
         
-        save_experiment(f'{asset_path}\\experiments\\{self.experiment_name}.pkl')
+        save_experiment(f'{asset_path}/experiments/{self.experiment_name}.pkl')
         progress_bar.update(1)
         
         progress_bar.update(total_steps - progress_bar.n)
@@ -139,7 +139,7 @@ class AutoML:
 
     def retrieve_test_data(self):
         # get mlruns path
-        ml_path = os.getcwd()+"\\mlruns\\1\\"
+        ml_path = os.getcwd()+"/mlruns/1/"
         
         # walk through directory to find Test.csv
         for root, dirs, files in os.walk(ml_path):
