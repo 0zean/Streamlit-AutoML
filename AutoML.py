@@ -93,7 +93,7 @@ class AutoML:
                             # log_plots=True,
                             # verbose=False,
                             # profile=True,
-                            fix_imbalance=GanResample(),
+                            fix_imbalance=True,
                             custom_pipeline=[("to_float", custom_pipeline)],
                             custom_pipeline_position=-1
                         )
