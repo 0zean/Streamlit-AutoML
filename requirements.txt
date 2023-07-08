@@ -1,3 +1,5 @@
 streamlit
 stqdm 
 pycaret[full]
+psycopg2
+pymysql
