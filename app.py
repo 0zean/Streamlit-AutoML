@@ -44,7 +44,7 @@ if st.button("Run Experiment"):
                      title=title).dashboard_save()
 
 # Set up for Linux
-if "dashboard.yaml" in listdir(getcwd()+"\\xdashboard\\"):
+if "dashboard.yaml" in listdir(getcwd()+"/xdashboard/"):
     if st.button("Show Dashboard"):
         time.sleep(5)
         db_proc = subprocess.Popen(["gunicorn", "-w", "3", "-b", "localhost:8050", "dashboard:app"],
