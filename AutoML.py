@@ -7,8 +7,6 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import make_pipeline
 from stqdm import stqdm
 
-from GANimbalance import GanResample
-
 
 # Custom Transformer to convert data to floats for Shap compatibility
 class CustomTransformer(BaseEstimator, TransformerMixin):
