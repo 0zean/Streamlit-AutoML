@@ -10,5 +10,5 @@ services:
       - '8402:8050'
     build: .
     volumes:
-      - $(pwd):/app/
+      - ./:/app/
     restart: on-failure
