@@ -4,11 +4,12 @@ EXPOSE 8700
 
 WORKDIR /app
 
+RUN mkdir -p xdashboard
+RUN mkdir -p pycaret_assets
+RUN mkdir -p pycaret_assets/models
+RUN mkdir -p pycaret_assets/experiments
+
 COPY . /app/
-
-RUN mkdir xdashboard
-
-RUN mkdir -p pycaret_assets/experiments pycaret_assets/models
 
 RUN pip install -r /app/requirements.txt
 
