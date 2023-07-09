@@ -46,10 +46,9 @@ if st.button("Run Experiment"):
 # Set up for Linux
 if "dashboard.yaml" in listdir(getcwd()+"/xdashboard/"):
     if st.button("Show Dashboard"):
-        time.sleep(5)
         db_proc = subprocess.Popen(["gunicorn", "-w", "3", "-b", "localhost:8050", "dashboard:app"],
                                 stdout=subprocess.PIPE, cwd=getcwd())
-        time.sleep(7)
+        time.sleep(12)
         
         url = "http://localhost:8050"
         st.write(f"Explainer Dashboard is ready at {url} !")
