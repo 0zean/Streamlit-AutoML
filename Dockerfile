@@ -4,13 +4,12 @@ EXPOSE 8700
 
 WORKDIR /app
 
-RUN mkdir -p xdashboard
-RUN mkdir -p pycaret_assets
-RUN mkdir -p pycaret_assets/models
-RUN mkdir -p pycaret_assets/experiments
-
 COPY . /app/
 
 RUN pip install -r /app/requirements.txt
 
-CMD streamlit run /app/app.py --server.port 8700 --server.enableCORS true
+CMD mkdir /app/xdashboard && \
+    mkdir /app/pycaret_assets && \
+    mkdir /app/pycaret_assets/models && \
+    mkdir /app/pycaret_assets/experiments && \
+    streamlit run /app/app.py --server.port 8700 --server.enableCORS true
