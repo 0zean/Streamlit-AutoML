@@ -85,12 +85,6 @@ class AutoML:
 
         experiment = setup(data=self.df, target=self.target, normalize=True,
                             experiment_name=self.experiment_name,
-                            # log_experiment=True,
-                            # log_profile=True,
-                            # log_data=True,
-                            # log_plots=True,
-                            # verbose=False,
-                            # profile=True,
                             fix_imbalance=True,
                             custom_pipeline=[("to_float", custom_pipeline)],
                             custom_pipeline_position=-1
