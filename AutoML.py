@@ -73,8 +73,6 @@ class AutoML:
         total_steps = 4
         progress_bar = stqdm(total=total_steps)
         
-        ## TODO: Find all cat variables in data, encode them, convert bools to floats
-        
         # Start the setup function
         progress_bar.set_description('Setting up experiment... ')
 
@@ -105,9 +103,6 @@ class AutoML:
 
         # Save Experiment
         save_experiment(f'{asset_path}/experiments/{self.experiment_name}.pkl')
-
-        ## Append the tuned models into a list.
-        ## Rank them and choose the one that has the highest metric of choice
 
         # Tune the top 2 performing models
         progress_bar.set_description('Tuning the model... ')
