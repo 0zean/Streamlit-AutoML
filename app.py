@@ -46,7 +46,7 @@ if st.button("Run Experiment"):
 # Set up for Linux
 if "dashboard.yaml" in listdir(getcwd()+"/xdashboard/"):
     if st.button("Show Dashboard"):
-        db_proc = subprocess.Popen(["gunicorn", "-w", "3", "-b", "localhost:8050", "dashboard:app"],
+        db_proc = subprocess.Popen(["waitress-serve", "--port=8050", "dashboard:app"],
                                 stdout=subprocess.PIPE, cwd=getcwd())
         time.sleep(12)
         
