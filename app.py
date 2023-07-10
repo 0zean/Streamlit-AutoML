@@ -1,6 +1,8 @@
 import subprocess
 import time
-from os import getcwd, listdir
+import socket
+
+from os import getcwd, listdir, system
 
 import streamlit as st
 
@@ -43,13 +45,44 @@ if st.button("Run Experiment"):
                      target=target_name,
                      title=title).dashboard_save()
 
-# Set up for Linux
+
+db_proc = None
+
+
+# Initialize ExplainerDashboard via gunicorn
+def start_gunicorn_server():
+    global db_proc
+    db_proc = subprocess.Popen(["gunicorn", "-b", "0.0.0.0:8050", "dashboard:app"])
+
+
+# release port 8050 from use
+def release_port():
+    if is_port_in_use(8050):
+        system("kill -9 $(pgrep gunicorn)")
+
+
+# kill the gunicorn subprocess
+def stop_gunicorn_server():
+    global db_proc
+    if db_proc is not None:
+        db_proc.kill()
+        db_proc = None
+
+
+# See if port 8050 is currently in use
+def is_port_in_use(port):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        return s.connect_ex(('0.0.0.0', port)) == 0
+
+
 if "dashboard.yaml" in listdir(getcwd()+"/xdashboard/"):
     if st.button("Show Dashboard"):
-        db_proc = subprocess.Popen(["waitress-serve", "--port=8050", "dashboard:app"],
-                                stdout=subprocess.PIPE, cwd=getcwd())
-        time.sleep(12)
+        stop_gunicorn_server()
+        release_port()
+        time.sleep(5)
+        start_gunicorn_server()
+        time.sleep(10)
         
-        url = "http://localhost:8050"
+        url = "http://localhost:8402"
         st.write(f"Explainer Dashboard is ready at {url} !")
         st.components.v1.iframe(src=url, height=800, scrolling=True)
