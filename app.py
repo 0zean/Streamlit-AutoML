@@ -55,6 +55,12 @@ def start_gunicorn_server():
     db_proc = subprocess.Popen(["gunicorn", "-b", "0.0.0.0:8050", "dashboard:app"])
 
 
+# See if port 8050 is currently in use
+def is_port_in_use(port):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        return s.connect_ex(('0.0.0.0', port)) == 0
+
+
 # release port 8050 from use
 def release_port():
     if is_port_in_use(8050):
@@ -67,12 +73,6 @@ def stop_gunicorn_server():
     if db_proc is not None:
         db_proc.kill()
         db_proc = None
-
-
-# See if port 8050 is currently in use
-def is_port_in_use(port):
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        return s.connect_ex(('0.0.0.0', port)) == 0
 
 
 if "dashboard.yaml" in listdir(getcwd()+"/xdashboard/"):
