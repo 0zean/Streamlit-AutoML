@@ -83,6 +83,6 @@ if "dashboard.yaml" in listdir(getcwd()+"/xdashboard/"):
         start_gunicorn_server()
         time.sleep(10)
         
-        url = "http://localhost:8402"
+        url = "http://209.182.236.218:8402"
         st.write(f"Explainer Dashboard is ready at {url} !")
         st.components.v1.iframe(src=url, height=800, scrolling=True)
